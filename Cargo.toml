@@ -1,0 +1,27 @@
+[package]
+name = "stytsch"
+version = "0.1.0"
+edition = "2021"
+description = "Persistent, synchronized command history for Windows cmd.exe"
+
+[[bin]]
+name = "stytsch"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.28"
+dirs = "5"
+fuzzy-matcher = "0.3"
+hostname = "0.4"
+ratatui = "0.29"
+rusqlite = { version = "0.31", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+tempfile = "3"
