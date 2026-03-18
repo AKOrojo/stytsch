@@ -3,6 +3,8 @@ name = "stytsch"
 version = "0.1.0"
 edition = "2021"
 description = "Persistent, synchronized command history for Windows cmd.exe"
+license = "MIT"
+repository = "https://github.com/AKOrojo/stytsch"
 
 [[bin]]
 name = "stytsch"
