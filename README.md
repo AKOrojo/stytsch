@@ -1,10 +1,20 @@
-# stytsch
+<p align="center">
+  <img src="assests/logo.png" alt="stytsch logo" width="300">
+</p>
 
-**Persistent, searchable command history for Windows `cmd.exe` — like [Atuin](https://github.com/atuinsh/atuin), but for Windows.**
+<h1 align="center">stytsch</h1>
+
+<p align="center">
+  <strong>Persistent, searchable command history for Windows <code>cmd.exe</code> — like <a href="https://github.com/atuinsh/atuin">Atuin</a>, but for Windows.</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/status-working-brightgreen" alt="status">
+  <img src="https://img.shields.io/github/v/release/AKOrojo/stytsch" alt="release">
+  <img src="https://img.shields.io/github/license/AKOrojo/stytsch" alt="license">
+</p>
 
 I got frustrated that `cmd.exe` had nothing like Atuin. Clink gives you a better readline, but its history is a flat file with no fuzzy search, no context, no sync. And Atuin doesn't support Windows cmd at all. So I built stytsch — a Lua + Rust wrapper that hooks into Clink to simulate Atuin's behavior: press **Up Arrow** and get instant fuzzy search over your entire command history, across sessions, with execution metadata.
-
-![demo](https://img.shields.io/badge/status-working-brightgreen)
 
 ## How It Works
 
