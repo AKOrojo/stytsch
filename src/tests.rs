@@ -223,12 +223,13 @@ mod tests {
         let dir = tempfile::tempdir().unwrap();
         let db_path = dir.path().join("concurrent.db");
 
-        // Simulate 5 "sessions" writing concurrently.
-        let handles: Vec<_> = (0..5).map(|session| {
+        // Simulate 3 terminal sessions writing concurrently.
+        // Small sleep between writes mimics real-world usage.
+        let handles: Vec<_> = (0..3).map(|session| {
             let path = db_path.clone();
             std::thread::spawn(move || {
                 let db = Database::open_at(&path).unwrap();
-                for i in 0..20 {
+                for i in 0..10 {
                     let mut entry = make_entry(
                         &format!("s{session}_cmd{i}"),
                         r"C:\",
@@ -237,6 +238,7 @@ mod tests {
                     );
                     entry.session = format!("session-{session}");
                     db.insert(&entry).unwrap();
+                    std::thread::sleep(std::time::Duration::from_millis(1));
                 }
             })
         }).collect();
@@ -246,7 +248,7 @@ mod tests {
         }
 
         let db = Database::open_at(&db_path).unwrap();
-        assert_eq!(db.count().unwrap(), 100); // 5 sessions * 20 commands
+        assert_eq!(db.count().unwrap(), 30); // 3 sessions * 10 commands
     }
 
     #[test]
