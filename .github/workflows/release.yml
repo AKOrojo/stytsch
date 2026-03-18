@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Run tests
+        run: cargo test
+
+      - name: Create release archive
+        run: |
+          mkdir dist
+          copy target\release\stytsch.exe dist\
+          copy scripts\stytsch.lua dist\
+          copy README.md dist\
+          cd dist && 7z a -tzip ../stytsch-${{ github.ref_name }}-x86_64-windows.zip *
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            stytsch-${{ github.ref_name }}-x86_64-windows.zip
+            target/release/stytsch.exe
+          generate_release_notes: true

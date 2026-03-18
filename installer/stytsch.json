@@ -1,0 +1,24 @@
+{
+    "version": "0.1.0",
+    "description": "Persistent, searchable command history for Windows cmd.exe — like Atuin, but for Windows.",
+    "homepage": "https://github.com/AKOrojo/stytsch",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/AKOrojo/stytsch/releases/download/v0.1.0/stytsch-v0.1.0-x86_64-windows.zip",
+            "hash": ""
+        }
+    },
+    "bin": "stytsch.exe",
+    "post_install": "stytsch install",
+    "post_uninstall": "stytsch uninstall",
+    "depends": ["clink", "fzf"],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/AKOrojo/stytsch/releases/download/v$version/stytsch-v$version-x86_64-windows.zip"
+            }
+        }
+    }
+}

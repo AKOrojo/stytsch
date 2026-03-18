@@ -46,10 +46,33 @@ You select a command → Enter runs it | Tab pastes it for editing
 
 ## Installation
 
+### One-liner (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/bkoro/stytsch/main/installer/install.ps1 | iex
+```
+
+Downloads the latest release, adds to PATH, and sets up the Clink plugin automatically.
+
+### Scoop
+
+```
+scoop bucket add stytsch https://github.com/AKOrojo/stytsch
+scoop install stytsch
+```
+
+Scoop will also install the dependencies (clink, fzf) automatically.
+
+### Manual download
+
+1. Download `stytsch.exe` from [Releases](https://github.com/AKOrojo/stytsch/releases)
+2. Put it somewhere in your PATH (e.g. `C:\Users\<you>\AppData\Local\stytsch\bin\`)
+3. Run `stytsch install`
+
 ### From source (requires Rust)
 
 ```
-git clone https://github.com/yourusername/stytsch
+git clone https://github.com/AKOrojo/stytsch
 cd stytsch
 cargo install --path .
 stytsch install
